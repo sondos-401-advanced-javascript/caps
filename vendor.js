@@ -10,14 +10,15 @@ events.on('order', Event);
 
 
 function Event() {
-  let payload = {
-    store: STORE_NAME,
-    orderID: faker.random.uuid(),
-    customer: faker.name.findName(),
-    address: faker.address.streetAddress(),
-  };
+ 
   
   setInterval(() => {
+    let payload = {
+      store: STORE_NAME,
+      orderID: faker.random.uuid(),
+      customer: faker.name.findName(),
+      address: faker.address.streetAddress(),
+    };
     console.log(`new Order`);
     events.emit('pickup', payload);  
   }, 5000);
