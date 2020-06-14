@@ -1,0 +1,29 @@
+{
+  "name": "caps",
+  "version": "1.0.0",
+  "description": "## class 16 - [pull request](https://github.com/sondos-401-advanced-javascript/auth-server/pull/4) - [github action](https://github.com/sondos-401-advanced-javascript/auth-server/actions)",
+  "main": "caps.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "eslint": "^7.2.0",
+    "faker": "^4.1.0",
+    "jest": "^26.0.1",
+    "sinon": "^9.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest --coverage",
+    "lint": "eslint '**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sondos-401-advanced-javascript/caps.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sondos-401-advanced-javascript/caps/issues"
+  },
+  "homepage": "https://github.com/sondos-401-advanced-javascript/caps#readme"
+}
