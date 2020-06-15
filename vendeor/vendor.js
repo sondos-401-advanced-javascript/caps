@@ -1,10 +1,7 @@
 'use strict';
-
+require('dotenv').config();
 const net = require('net');
-
 const client = new net.Socket();
-
-
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3000;
 
