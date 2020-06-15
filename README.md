@@ -1,7 +1,7 @@
 # caps
 
 ## class 17
-- [pull request](https://github.com/sondos-401-advanced-javascript/caps/pull/1)
+- [pull request](https://github.com/sondos-401-advanced-javascript/caps/pull/2)
 - [github action](https://github.com/sondos-401-advanced-javascript/auth-server/actions)
 
 ### test
