@@ -13,7 +13,7 @@ client.connect(PORT, HOST, ()=> {console.log('vendor got connected');});
 client.on('data', function(data) {
   let event = JSON.parse(data); 
   if(event.event === 'delivered'){
-    console.log(`VENDOR: Thank you for delivering ${event.payload.orderID}`);
+    console.log(`Thank you for delivering ${event.payload.orderID}`);
   }
 });
 

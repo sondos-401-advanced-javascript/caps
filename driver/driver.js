@@ -22,12 +22,12 @@ client.on('data', function(data){
   let eventObj = JSON.parse(data);
   if (eventObj.event === 'pickup') {
     console.clear();
-    messages.push(`DRIVER: picked up ${eventObj.payload.orderID}`);
+    messages.push(`pickedup ${eventObj.payload.orderID}`);
     messages.forEach(msg=> console.log(msg));
   }
   else if(eventObj.event === 'in-transit'){
     console.clear();
-    messages.push(`DRIVER: delivered up ${eventObj.payload.orderID}`);
+    messages.push(`delivered ${eventObj.payload.orderID}`);
     messages.forEach(msg=> console.log(msg));
   }
   console.log();
