@@ -40,3 +40,4 @@ function delivered(payload){
   caps.emit('message',new Event('delivered', new Date(), payload));
   
 }
+

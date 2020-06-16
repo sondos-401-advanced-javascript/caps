@@ -12,21 +12,21 @@ caps.on('joined', (joinedChannel) => {
 
 
 caps.on('message', (payload) => {
-if(payload.event === 'delivered'){
+  if(payload.event === 'delivered'){
     console.log(`Thank you for delivering ${payload.payload.orderID}`);
-}
+  }
 });
 
 function sendMessage() {
-    setInterval(() => {
-      let payload = {
-        store: STORE_NAME,
-        orderID: faker.random.uuid(),
-        customer: faker.name.findName(),
-        address: faker.address.streetAddress(),
-      };
-      caps.emit('message',payload);
-    }, 5000);
+  setInterval(() => {
+    let payload = {
+      store: STORE_NAME,
+      orderID: faker.random.uuid(),
+      customer: faker.name.findName(),
+      address: faker.address.streetAddress(),
+    };
+    caps.emit('message',payload);
+  }, 5000);
     
-  }
-  sendMessage();
+}
+sendMessage();
