@@ -1,9 +1,7 @@
 'use strict';
 require('dotenv').config();
-const faker = require('faker');
 const net = require('net');
 const client = new net.Socket();
-const STORE_NAME = process.env.STORE_NAME || 'BigStore';
 const HOST = process.env.HOST || 'localhost';
 const PORT = process.env.PORT || 3000;
 
@@ -21,36 +19,17 @@ function Event(event,time,payload){
 
 client.on('data', function(data){ 
   let eventObj = JSON.parse(data);
-  if (eventObj.event === 'pickup') {
-    console.clear();
-    messages.push(`pickedup ${eventObj.payload.orderID}`);
-    messages.forEach(msg=> console.log(msg));
+  if(!eventObj.event){   
+    pickUp(eventObj);
   }
-  else if(eventObj.event === 'in-transit'){
-    console.clear();
-    messages.push(`delivered ${eventObj.payload.orderID}`);
-    messages.forEach(msg=> console.log(msg));
-  }
-  console.log();
-
 });
+let timeOut1;
+let timeOut2;
 
-
-function sendMessage() {
-  setInterval(() => {
-    let payload = {
-      store: STORE_NAME,
-      orderID: faker.random.uuid(),
-      customer: faker.name.findName(),
-      address: faker.address.streetAddress(),
-    };
-    pickUp(payload);
-  }, 5000);
-  
-}
-sendMessage();
 function pickUp(payload){
-  setTimeout(() => {
+  timeOut1= setTimeout(() => {
+    messages.push(`pickedup ${payload.orderID}`);
+    console.log(`pickedup ${payload.orderID}`);
     let event = JSON.stringify(new Event('pickup', new Date(), payload));
     client.write(event);
     inTransit(payload);
@@ -58,7 +37,9 @@ function pickUp(payload){
 
 }
 function inTransit(payload){
-  setTimeout(() => {
+  timeOut2= setTimeout(() => {
+    messages.push(`delivered ${payload.orderID}`);
+    console.log(`delivered ${payload.orderID}`);
     let event = JSON.stringify(new Event('in-transit', new Date(), payload));
     client.write(event);
     delivered(payload);
@@ -68,5 +49,10 @@ function delivered(payload){
   let event = JSON.stringify(new Event('delivered', new Date(), payload));
   client.write(event);
 }
+client.on('close', function() {
+  clearTimeout(timeOut2);
+  clearTimeout(timeOut1);
+  console.log('connection closed');
+});
 
 

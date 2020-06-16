@@ -26,14 +26,15 @@ server.on('error', (e)=> {
 
 function dispatchEvent(buffer) {
   let order = JSON.parse(buffer.toString().trim());
-  console.log(order);
+  if(order.event && order.payload){
+    console.log(order);}
   broadcast(order);
 }
 
 function broadcast(order) {
   let payload = JSON.stringify(order);
-  
   for (let socket in socketPool) {
     socketPool[socket].write(payload);
   }
+  
 }
