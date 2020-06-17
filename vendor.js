@@ -20,7 +20,7 @@ function Event() {
       address: faker.address.streetAddress(),
     };
     console.log(`new Order`);
-    events.emit('pickup', payload);  
+    events.emit('pickup', payload);
   }, 5000);
   
 }

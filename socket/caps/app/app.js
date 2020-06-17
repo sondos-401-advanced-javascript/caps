@@ -19,11 +19,7 @@ module.exports = (io) => {
         if(payload.event && payload.payload){
           console.log('Event',payload);
         }  
-       
         caps.to(currentRoom).emit('message', payload);
-        
-        
-        
       });
     });
   });
