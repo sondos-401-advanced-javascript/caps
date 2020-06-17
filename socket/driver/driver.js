@@ -4,7 +4,7 @@ const io = require('socket.io-client');
 const caps = io.connect('http://localhost:3000/caps');
 
 
-let channel = 'vendor'; 
+let channel = '1-206-flowers'; 
 caps.emit('join', channel);
 caps.on('joined', (joinedChannel) => {
   channel = joinedChannel;
