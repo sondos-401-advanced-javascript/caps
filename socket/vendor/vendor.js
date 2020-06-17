@@ -11,7 +11,7 @@ caps.on('joined', (joinedChannel) => {
 });
 
 
-caps.on('message', (payload) => {
+caps.on('delivered', (payload) => {
   if(payload.event === 'delivered'){
     console.log(`Thank you for delivering ${payload.payload.orderID}`);
   }
@@ -25,8 +25,7 @@ function sendMessage() {
       customer: faker.name.findName(),
       address: faker.address.streetAddress(),
     };
-    caps.emit('message',payload);
+    caps.emit('pickup',payload);
   }, 5000);
-    
 }
 sendMessage();

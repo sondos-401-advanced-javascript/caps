@@ -15,11 +15,19 @@ module.exports = (io) => {
       
       caps.to(`${socket.id}`).emit('joined', room);
 
-      socket.on('message', (payload) => {
+      socket.on('pickup', (payload) => {
         if(payload.event && payload.payload){
           console.log('Event',payload);
-        }  
-        caps.to(currentRoom).emit('message', payload);
+        }
+        caps.to(currentRoom).emit('pickup', payload);
+      });
+      socket.on('in-transit',event =>{
+        console.log('Event',event);
+        caps.to(currentRoom).emit('in-transit', event);
+      });
+      socket.on('delivered',event =>{
+        console.log('Event',event);
+        caps.to(currentRoom).emit('delivered', event);
       });
     });
   });
